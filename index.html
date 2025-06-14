@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <title>MOODY</title>
+
+  <!-- Schrift -->
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Manifest (für PWA) -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <!-- Apple PWA Einstellungen -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="MOODY" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="white-translucent" />
+  <link rel="apple-touch-icon" href="/img/icon-192.png" />
+
+  <!-- Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js');
+    }
+  </script>
+</head>
+
+
+<body>
+  <main class="container">
+   <h1>(MOODY)</h1>
+    <h2>EMOTION DIARY</h2>
+
+    <section class="entry-form">
+      <p id="emotion-label" class="emotion-label">"CURRENT MOODY"</p>
+
+      <div class="emotions">
+        <button class="emotion-btn" data-emotion="HAPPY" title="Happy">
+          <img src="img/gluecklich.png" alt="Happy" />
+        </button>
+        <button class="emotion-btn" data-emotion="SAD" title="Sad">
+          <img src="img/traurig.png" alt="Sad" />
+        </button>
+        <button class="emotion-btn" data-emotion="ANGRY" title="Angry">
+          <img src="img/wuetend.png" alt="Angry" />
+        </button>
+        <button class="emotion-btn" data-emotion="QUIET" title="Calm">
+          <img src="img/ruhig.png" alt="Calm" />
+        </button>
+      </div>
+
+      <div class="emotions">
+        <button class="emotion-btn" data-emotion="TIRED" title="Tired">
+          <img src="img/muede.png" alt="Tired" />
+        </button>
+        <button class="emotion-btn" data-emotion="CHEERFUL" title="Cheerful">
+          <img src="img/heiter.png" alt="Cheerful" />
+        </button>
+        <button class="emotion-btn" data-emotion="FRUSTRATED" title="Frustrated">
+          <img src="img/frustriert.png" alt="Frustrated" />
+        </button>
+        <button class="emotion-btn" data-emotion="MELANCHOLIC" title="Melancholic">
+          <img src="img/melancholisch.png" alt="Melancholic" />
+        </button>
+      </div>
+
+      <textarea id="note" placeholder="Why do you feel this way?"></textarea>
+      <button id="save-btn">SAVE</button>
+    </section>
+
+    <section class="entries">
+      <h2>ENTRIES</h2>
+      <ul id="entry-list"></ul>
+    </section>
+
+    <section class="trash">
+      <button style="background-color: black; color: white;" id="trash-toggle">"DELETED EMOTIONS"</button>
+      <ul id="trash-list" class="hidden"></ul>
+    </section>
+  </main>
+
+  <!-- App JavaScript -->
+  <script src="script.js"></script>
+
+  <!-- Register Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('✅ Service Worker registered'))
+        .catch((err) => console.error('❌ Service Worker error:', err));
+    }
+  </script>
+</body>
+</html>
